@@ -16,7 +16,7 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
-#include "ArduinoRobot.h"
+#include "ArduinoRobotControl.h"
 
 #if ARDUINO >= 100
 #include "Arduino.h"
