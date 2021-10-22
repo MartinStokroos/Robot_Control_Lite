@@ -16,7 +16,7 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
-#include "ArduinoRobotControl.h"
+#include "ArduinoRobotLite.h"
 #include "Multiplexer.h"
 #include "Wire.h"
 bool RobotControl::digitalRead(uint8_t port){

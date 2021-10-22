@@ -1,19 +1,24 @@
-= Robot Control Lite Library for Arduino =
+# Robot Control Lite Library for Arduino
 
-The Robot has a number of built in sensors and actuators. The library is designed to easily access the robot's functionality.
+The Arduino Robot has a number of built in sensors and actuators. The library is designed to easily access the robot's functionality.
 
-For more information about this library please visit us at
+For more information about this library please visit Arduino at:
 http://www.arduino.cc/en/Reference/RobotLibrary
 
-Robot_Control_Lite is the stripped down version of the Arduino Robot Library. It saves memory space of the ATMEGA32u4 MCU on the Robot Control Board. The lower memory footprint of the robot base system allows for instance the use of the *rosserial_client* for Arduino: http://wiki.ros.org/rosserial_arduino
+Robot_Control_Lite is the stripped down version of the Arduino Robot Library. It saves memory space of the ATMEGA32u4 MCU on the Robot Control Board. A lower memory footprint of the robot base system allows for example the use of the *rosserial_client* for Arduino: http://wiki.ros.org/rosserial_arduino
 
 The robot features that are no longer supported in this library are:
-LCD screen
-Squawk sound synthesizer
-FAT16 file system for SD card
+* LCD screen
+* Squawk sound synthesizer
+* FAT16 file system support for SD cards
 
-    RobotControlLite Constructor
-    
+For the Robot_Control_Lite library, now use:
+
+`#include <ArduinoRobotLite.h>`
+
+
+RobotControl Constructor
+```    
     begin()
     setMode()
     pauseMode()
@@ -45,7 +50,7 @@ FAT16 file system for SD card
     *clearScreen()
     *displayLogos()
     *drawCompass()
-    beginSD()
+    *beginSD()
     userNameRead()
     userNameWrite()
     robotNameRead()
@@ -54,10 +59,10 @@ FAT16 file system for SD card
     cityNameWrite()
     countryNameRead()
     countryNameWrite()
-
+```
+*) methods no longer exists.
 
 == License ==
-
 Copyright (c) Arduino LLC. All right reserved.
 Copyright (c) Bill Porter. All right reserved.
 Copyright (C) 2008 by William Greiman. All right reserved.
