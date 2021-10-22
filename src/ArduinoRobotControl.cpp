@@ -16,16 +16,14 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
-#include "ArduinoRobot.h"
+#include "ArduinoRobotControl.h"
 #include "Multiplexer.h"
 #include "Wire.h"
 #include "EasyTransfer2.h"
 
-//RobotControl::RobotControl(){}
+RobotControl::RobotControl(){}
 
-RobotControl::RobotControl():Arduino_LCD(LCD_CS,DC_LCD,RST_LCD){
-
-}
+//RobotControl::RobotControl():Arduino_LCD(LCD_CS,DC_LCD,RST_LCD){}
 
 void RobotControl::begin(){
 	Wire.begin();

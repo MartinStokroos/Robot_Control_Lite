@@ -16,17 +16,17 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
-#ifndef ArduinoRobot_h
-#define ArduinoRobot_h
+#ifndef ArduinoRobotControl_h
+#define ArduinoRobotControl_h
 
-#include "Arduino_LCD.h" // Hardware-specific library
+//#include "Arduino_LCD.h" // Hardware-specific library
 //#include "FormattedText.h"
-#include "SquawkSD.h"
+//#include "SquawkSD.h"
 #include "Multiplexer.h"
 #include "EasyTransfer2.h"
 #include "EEPROM_I2C.h"
 #include "Compass.h"
-#include "Fat16.h"
+//#include "Fat16.h"
 
 #if ARDUINO >= 100
 #include "Arduino.h"
@@ -145,14 +145,14 @@
 //508-511 robot info
 #define ADDRESS_ROBOTINFO 508
 
-#define	BLACK	ILI9163C_BLACK   
-#define	BLUE	ILI9163C_BLUE    
-#define	RED		ILI9163C_RED     
-#define	GREEN	ILI9163C_GREEN   
-#define CYAN	ILI9163C_CYAN    
-#define MAGENTA	ILI9163C_MAGENTA 
-#define YELLOW	ILI9163C_YELLOW    
-#define WHITE	ILI9163C_WHITE   
+//#define BLACK	ILI9163C_BLACK   
+//#define BLUE	ILI9163C_BLUE    
+//#define RED		ILI9163C_RED     
+//#define GREEN	ILI9163C_GREEN   
+//#define CYAN	ILI9163C_CYAN    
+//#define MAGENTA	ILI9163C_MAGENTA 
+//#define YELLOW	ILI9163C_YELLOW    
+//#define WHITE	ILI9163C_WHITE   
  
 //A data structure for storing the current state of motor board
 struct MOTOR_BOARD_DATA{
@@ -186,9 +186,9 @@ digitalRead return:
 	byte COMMAND_DIGITAL_READ_RE, byte codename, byte value;
 read IR:
 	byte COMMAND_READ_IR, int valueA, int valueB, int valueC, int valueD;
-
-
 */
+
+
 #define NUM_EEPROM_BMP 10
 struct EEPROM_BMP{
 	char name[8];
@@ -197,15 +197,16 @@ struct EEPROM_BMP{
 	uint16_t address;
 };
 
+
 //if you call #undef USE_SQUAWK_SYNTH_SD at the beginning of your sketch,
 //it's going to remove anything regarding sound playing
 
 class RobotControl:public Multiplexer, 
 public EEPROM_I2C, 
-public Compass, 
-public SquawkSynthSD, 
+public Compass
+//public SquawkSynthSD
 //public FormattedText
-public Arduino_LCD
+//public Arduino_LCD
 {
 	public:
 		RobotControl();
@@ -229,19 +230,19 @@ public Arduino_LCD
 		int trimRead();
 		
 		//on board piezo
-		void beginSpeaker(uint16_t frequency=44100);
-		void playMelody(char* script);
-		void playFile(char* filename);
-		void stopPlayFile();
+		//void beginSpeaker(uint16_t frequency=44100);
+		//void playMelody(char* script);
+		//void playFile(char* filename);
+		//void stopPlayFile();
 		void beep(int beep_length=BEEP_SIMPLE);
-		void tempoWrite(int tempo);
-		void tuneWrite(float tune);
+		//void tempoWrite(int tempo);
+		//void tuneWrite(float tune);
 
 		//compass
 		uint16_t compassRead();
-		void drawCompass(uint16_t value);
-		void drawBase();
-		void drawDire(int16_t dire);
+		//void drawCompass(uint16_t value);
+		//void drawBase();
+		//void drawDire(int16_t dire);
 		
 		//keyboard
 		void keyboardCalibrate(int *vals);
@@ -264,22 +265,22 @@ public Arduino_LCD
 		
 		//TFT LCD
 		//use the same commands as Arduino_LCD
-		void beginTFT(uint16_t foreGround=BLACK, uint16_t background=WHITE);
+		//void beginTFT(uint16_t foreGround=BLACK, uint16_t background=WHITE);
 		/*void text(int value, uint8_t posX, uint8_t posY, bool EW);
 		void text(long value, uint8_t posX, uint8_t posY, bool EW);
 		void text(char* value, uint8_t posX, uint8_t posY, bool EW);
 		void text(char value, uint8_t posX, uint8_t posY, bool EW);*/
-		void debugPrint(long value, uint8_t x=0, uint8_t y=0);
-		void clearScreen();
+		//void debugPrint(long value, uint8_t x=0, uint8_t y=0);
+		//void clearScreen();
 		
-		void drawBMP(char* filename, uint8_t x, uint8_t y);//detect if draw with EEPROM or SD, and draw it
-		void _drawBMP(uint32_t iconOffset, uint8_t x, uint8_t y, uint8_t width, uint8_t height);//draw from EEPROM
-		void _drawBMP(char* filename, uint8_t x, uint8_t y);//draw from SD
-		void beginBMPFromEEPROM();
-		void endBMPFromEEPROM();
+		//void drawBMP(char* filename, uint8_t x, uint8_t y);//detect if draw with EEPROM or SD, and draw it
+		//void _drawBMP(uint32_t iconOffset, uint8_t x, uint8_t y, uint8_t width, uint8_t height);//draw from EEPROM
+		//void _drawBMP(char* filename, uint8_t x, uint8_t y);//draw from SD
+		//void beginBMPFromEEPROM();
+		//void endBMPFromEEPROM();
 		
-		uint16_t foreGround;//foreground color
-		uint16_t backGround;//background color
+		//uint16_t foreGround;//foreground color
+		//uint16_t backGround;//background color
 
 		
 		//SD card
@@ -299,7 +300,7 @@ public Arduino_LCD
 		//Others
 		bool isActionDone();
 		void pauseMode(uint8_t onOff);
-		void displayLogos();
+		//void displayLogos();
 		void waitContinue(uint8_t key=BUTTON_MIDDLE);
 		
 	private:
@@ -325,16 +326,16 @@ public Arduino_LCD
 		void _requestDigitalWrite(uint8_t port, uint8_t value);
 				
 		//LCD
-		void _enableLCD();
-		void _setWrite(uint8_t posX, uint8_t posY);
-		void _setErase(uint8_t posX, uint8_t posY);
+		//void _enableLCD();
+		//void _setWrite(uint8_t posX, uint8_t posY);
+		//void _setErase(uint8_t posX, uint8_t posY);
 		
 		
 		//SD
-		SdCard card;
-		Fat16 file;
-		Fat16 melody;
-		void _enableSD();
+		//SdCard card;
+		//Fat16 file;
+		//Fat16 melody;
+		//void _enableSD();
 		
 		//keyboard
 		void _processKeyboard(); //need to run in loop, detect if the key is actually pressed
@@ -345,7 +346,7 @@ public Arduino_LCD
 		//uint8_t pinEcho_UR;
 		
 		//Melody
-		void playNote(byte period, word length, char modifier); 
+		//void playNote(byte period, word length, char modifier); 
 		
 		//Communication
 		
@@ -353,10 +354,10 @@ public Arduino_LCD
 		EasyTransfer2 messageIn;
 		
 		//TFT LCD
-		bool _isEEPROM_BMP_Allocated;
-		EEPROM_BMP * _eeprom_bmp;
-		void _drawBMP_EEPROM(uint16_t address, uint8_t width, uint8_t height);
-		void _drawBMP_SD(char* filename, uint8_t x, uint8_t y);
+		//bool _isEEPROM_BMP_Allocated;
+		//EEPROM_BMP * _eeprom_bmp;
+		//void _drawBMP_EEPROM(uint16_t address, uint8_t width, uint8_t height);
+		//void _drawBMP_SD(char* filename, uint8_t x, uint8_t y);
 
 		
 };
