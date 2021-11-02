@@ -12,10 +12,7 @@ The robot features that are no longer supported in this library are:
 * Squawk sound synthesizer
 * FAT16 file system support for SD cards
 
-For the Robot_Control_Lite library, now use:
-
-`#include <ArduinoRobotLite.h>`
-
+For the Robot_Control_Lite library, use `#include <ArduinoRobotLite.h>` instead of `#include <ArduinoRobot.h>`
 
 RobotControl Constructor
 ```    

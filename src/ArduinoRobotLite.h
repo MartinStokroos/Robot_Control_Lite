@@ -284,7 +284,7 @@ public Compass
 
 		
 		//SD card
-		void beginSD();
+		//void beginSD();
 		
 		//Information
 		void userNameRead(char* container);
